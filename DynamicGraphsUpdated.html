@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dynamic Graph Load</title>
+    
+    <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.6.0.min.js"></script>
+    <script type="text/javascript">
+        var vizList = ["https://public.tableau.com/views/Biannually/Stockturn?:language=en&:display_count=y&:origin=viz_share_link", 
+						"https://public.tableau.com/views/Biannually/GMROI?:language=en&:display_count=y&:origin=viz_share_link", 
+						"https://public.tableau.com/views/Biannually/Sellthrough?:language=en&:display_count=y&:origin=viz_share_link", 
+						"https://public.tableau.com/views/SalesStockCustomer/MonthvsCustomerFluctuation?:language=en&:display_count=y&:origin=viz_share_link"
+						];
+        
+            var viz,
+            vizLen = vizList.length,
+            vizCount = 0,
+			isDrawnOnce = false;
+        
+        function createViz(vizPlusMinus) {
+            var vizDiv = document.getElementById("vizContainer"), options = {hideTabs: true};
+
+            vizCount = vizCount + vizPlusMinus;
+            drawIt = true;
+            
+            // if vizCount exceeds the array size, remain at the end, and do not redraw.
+            if (vizCount >= vizLen) { 
+                vizCount = vizLen - 1;
+                drawIt = false;
+			}
+
+            // if vizCount underruns the array size, remain at the start, and do not redraw.
+            if (vizCount < 0) {
+                vizCount = 0;
+                drawIt = false;
+            }
+
+			//disable the previous button if already at the beginning
+            if (vizCount <= 0)
+                document.getElementById("prevbtn").disabled = true;
+			else
+				document.getElementById("prevbtn").disabled = false;
+
+			//disable the next button if already at the end
+            if (vizCount >= (vizLen-1))
+                document.getElementById("nextbtn").disabled = true;
+            else
+                document.getElementById("nextbtn").disabled = false;
+
+			if (!drawIt) return; // return if new viz does not need to be drawn
+            if (viz) viz.dispose(); // If a viz object exists, delete it.
+            viz = new tableau.Viz(vizDiv, vizList[vizCount], options); // get and draw the viz object at the given index
+        }
+
+    </script>
+</head>
+
+<body onload="createViz(0);">
+    <div id="vizContainer" style="width:500px; height:400px;"></div>
+    <div id="controls" style="padding:20px;">
+        <button id = "prevbtn" style="width:100px;" onclick="javascript:createViz(-1);">Previous</button>
+        <button id = "nextbtn" style="width:100px;" onclick="javascript:createViz(1);">Next</button>
+    </div>
+</body>
+
+</html>

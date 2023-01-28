@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+<head>
+	<!-- META -->
+	<title>KPI & Business simulator</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<meta charset="utf-8">
+	<link rel="icon" type="image/png" href="kpiFavicon.png">
+	<!-- supporting Scripts for tableau charts -->
+	<script src="plotly.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="confettiAnimation\jsconfetti-master\jsconf.css"></link>
+	<!-- <script src="jquery.confetti.js"></script>
+	<script src="confettiAnimation/confe.js"></script> -->
+	<script src="confettiAnimation\jsconfetti-master\confetti.js"></script>
+	
+	<!-- Style -->
+	<link rel="stylesheet" type="text/css" href="-css/page.css">
+	<!-- <link rel="stylesheet" type="text/css" href="confettiAnimation/confettii.css"></link> -->
+	<link rel="stylesheet" type="text/css" href="-css/slideshoww.css"></link>
+	<link rel="stylesheet" type="text/css" href="-css/column.css"></link>
+	
+
+	<!-- splash title style-->
+    <style>
+	#splash_title {
+		margin-top: 65px;
+	}
+	
+	@media (max-width: 900px) {
+		#splash_title {
+			font-size: 75px;
+			margin-top: 105px;
+		}
+	}
+
+	</style>
+
+		
+</head>
+
+<body>
+	<!-- Splash Page! -->
+	<!-- Splash Page! -->
+	<div id="splash" style='background:hsl(184, 64%, 48%);'>
+		<iframe id="splash_iframe" src="/-splash/network/social.html" scrolling="no"></iframe>
+		<div id="splash_title"><b>Business Head-On</b></div>
+		<div id="splash_arrow">
+			<div></div><div></div><div></div><div></div>
+		</div>
+		<a href='/' id='splash_home'></a>
+	</div>
+	<!-- <canvas id='confetti' style="margin-left: 350px; margin-top: 600px;"></canvas> -->
+	
+	<canvas id="myCanvas" width="900px" height="700px" style=" margin-left: 300px;margin-top: 200px;"></canvas>
+	<script>
+		var canvas = document.getElementById("myCanvas");
+		var ctx=canvas.getContext("2d");
+		ctx.font="70px 'Brush Script MT', cursive";
+		ctx.fillStyle = "black";
+		ctx.textAlign = "center";
+		ctx.fillText("Results!!!", 450, 150);
+
+		</script>
+		<script>
+			var canvas = document.getElementById("myCanvas");
+			var ctx=canvas.getContext("2d");
+			ctx.font="70px  'Times New Roman', serif";
+			ctx.fillStyle = "black";
+			ctx.textAlign = "center";
+			ctx.fillText("Winning Strategy is:-", 450, 350);
+	
+			</script>
+	<script>
+		var canvas = document.getElementById("myCanvas");
+		var ctx=canvas.getContext("2d");
+		ctx.font="70px 'Garamond, serif";
+		ctx.fillStyle = "black";
+		ctx.textAlign = "center";
+		ctx.fillText("Alternator", 450, 550);
+
+		</script>
+
+	<iframe width="1518px" height="1350px" frameborder="10px" scrolling="none" style="margin-top: 50px;margin-bottom: 100px;" src="//plotly.com/dashboard/why_Uh_No:54/embed"></iframe>
+
+	<!-- FOOTER: Navigate to other parts of the site -->
+	
+	<!-- Site credits -->
+	<div id="footer_credits_container">
+		<div id="footer_credits">
+			This project was made possible by
+			<br>
+			Rutuja Kolhe | Anuya Joshi | Prachi Mate | Deeksha Gupta 
+			<br>
+			Mentored By : Dr. Dipti Patil
+		</div>
+	</div>
+
+	
+    <script>
+      //   confetti.stop();
+
+      const startit = () => {
+        setTimeout(function () {
+          console.log("start");
+          confetti.start();
+        }, 1000);
+      };
+
+      const stopit = () => {
+        setTimeout(function () {
+          console.log("stop");
+          confetti.stop();
+        }, 6000);
+      };
+
+      startit();
+      stopit();
+    </script>
+
+</body>
+
+</html>
+
+<!-- Scripts! -->
+<script src="-js/q.js"></script>
+<script src="-js/pegasus.js"></script>
+<script src="-js/helpers.js"></script>
+<script src="-js/page.js"></script>
+<script src="-js/sharing.js"></script>

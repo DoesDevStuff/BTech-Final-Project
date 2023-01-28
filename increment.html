@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+	   function incrementValue()
+	{
+		var value = parseInt(document.getElementById('number').value, 10);
+		value = isNaN(value) ? 0 : value;
+		value++;
+		document.getElementById('number').value = value;
+	}
+
+	   function decrementValue()
+	{
+		var value = parseInt(document.getElementById('number').value, 10);
+		value = isNaN(value) ? 0 : value;
+		value--;
+		document.getElementById('number').value = value;
+	}
+	
+	var rounds= document.getElementById('number')
+	if (rounds<=0 || rounds>100000)
+	{
+	alert("Please enter number of rounds between 0 & 100000")
+	}
+</script>
+<style>
+.btn {
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: blue;
+}
+
+</style>
+</head>
+<body>
+
+
+<button class="btn" onclick="decrementValue()" value="Decrement Value" style="background-color: red"><i class="fa fa-arrow-circle-o-down"></i></button>
+<input type="text" class="ipbox" id="number" value="5"/>
+<button class="btn" onclick="incrementValue()" value="Increment Value" style="background-color: green"><i class="fa fa-arrow-circle-o-up"></i></button>
+<input type="submit" value="Submit">
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<html>
+    <head>
+        <title>System Drag And Drop between two text boxes</title>
+		
+		<style>
+div.a {
+  background-color: skyblue;
+  width: 50%;
+  height: 50%;
+  padding: 2px;
+  margin: 20px; 
+  overflow:auto;
+  float: left;
+}
+
+div.b {
+  background-color: lightpink;
+  width: 30%;
+  height: 25%;
+  padding: 2px;
+  margin: 20px; 
+  float: right;
+}
+
+div.results{
+background-color: lightgrey;
+  width: 5%;
+  float: right;
+}
+
+
+</style>
+
+        <script type="text/javascript">
+            function handleDragDropEvent(oEvent) {
+                var oTextbox = document.getElementById("txt1");
+                oTextbox.value +=  oEvent.type + "\n";
+            }
+			
+
+function handleFormSubmit(event1) {
+  event1.preventDefault();
+  
+  const data = new FormData(event1.target);
+  
+  const formJSON = Object.fromEntries(data.entries());
+  
+  const results = document.querySelector('.results');
+  results.innerText = JSON.stringify(formJSON, null, 2);
+}
+
+const form = document.querySelector('.b');
+form.addEventListener('submit', handleFormSubmit);
+
+        </script>
+		
+    </head>
+    <body>
+        <P>
+		
+		<div class="a">
+		<p>
+		<p>
+		<input type="text" value="Cooperator" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value=" Tricky Cooperator" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Defector" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Doubler" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Random" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Alternator" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Tit for tat" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Grumpy" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Grudger" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Forgiver" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Hopeless" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Desperate" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Evolved ANN" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Evolved ANN 5" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		<p>
+		<input type="text" value="Evolved ANN Noise 5" readonly ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)" ondragend="handleDragDropEvent(event)" />
+		</p>
+		</div>		  
+		
+		<div class="b">
+				<form>
+        <input type="text" id="strategy1"
+               ondragenter="handleDragDropEvent(event)"
+               ondragover="handleDragDropEvent(event)"
+               ondragleave="handleDragDropEvent(event)"
+               ondrop="handleDragDropEvent(event)" />
+			   		<button type="submit">Simulate!</button>
+			   		</form>
+		</div>
+		
+
+		
+		<div class="results">
+		<h6>JSON data</h6>
+        <pre></pre>
+		</div>
+		
+    </body>
+</html>

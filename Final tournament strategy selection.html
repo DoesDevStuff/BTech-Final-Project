@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+var selected_strategies=[];
+function add_strategy(value)
+{
+	selected_strategies.push(value);
+} 
+</script>
+
+<p>
+<button type="button" id="select_strategy" value="cooperator" onclick="add_strategy(this.value)">Cooperator</button>
+<button type="button" id="select_strategy" value="tricky cooperator" onclick="add_strategy(this.value)">Tricky Cooperator</button>
+<button type="button" id="select_strategy" value="defector" onclick="add_strategy(this.value)">Defector</button>
+</p>
+<p>
+<button type="button" id="select_strategy" value="doubler" onclick="add_strategy(this.value)">Doubler</button>
+<button type="button" id="select_strategy" value="random" onclick="add_strategy(this.value)">Random</button>
+<button type="button" id="select_strategy" value="alternator" onclick="add_strategy(this.value)">Alternator</button>
+</p>
+<p>
+<button type="button" id="select_strategy" value="tit for tat" onclick="add_strategy(this.value)">Tit For Tat</button>
+<button type="button" id="select_strategy" value="grumpy" onclick="add_strategy(this.value)">Grumpy</button>
+<button type="button" id="select_strategy" value="grudger" onclick="add_strategy(this.value)">Grudger</button>
+</p>
+<p>
+<button type="button" id="select_strategy" value="forgiver" onclick="add_strategy(this.value)">Forgiver</button>
+<button type="button" id="select_strategy" value="hopeless" onclick="add_strategy(this.value)">Hopeless</button>
+<button type="button" id="select_strategy" value="desperate" onclick="add_strategy(this.value)">Desperate</button>
+</p>
+<p>
+<button type="button" id="select_strategy" value="evolved ann" onclick="add_strategy(this.value)">Evolved ANN</button>
+<button type="button" id="select_strategy" value="evolved ann 5" onclick="add_strategy(this.value)">Evolved ANN 5</button>
+<button type="button" id="select_strategy" value="evolved ann 5 noise 5" onclick="add_strategy(this.value)">Evolved ANN 5 Noise 5</button>
+</p>
+
+<button type="submit" onclick=alert(selected_strategies)>Submit Strategies</button>
+</body>
+</html>

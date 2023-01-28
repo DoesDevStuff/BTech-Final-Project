@@ -1,0 +1,333 @@
+<!doctype html>
+<html>
+
+<head>
+	<!-- META -->
+	<title>KPI & Business simulator</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<meta charset="utf-8">
+	<link rel="icon" type="image/png" href="kpiFavicon.png">
+	<!-- supporting Scripts for tableau charts -->
+	<script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.6.0.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+	
+	<!-- Style -->
+	<link rel="stylesheet" type="text/css" href="-css/page.css">
+	<link rel="stylesheet" type="text/css" href="-css/slideshoww.css"></link>
+	<link rel="stylesheet" type="text/css" href="-css/column.css"></link>
+
+	<!-- splash title style-->
+    <style>
+	#splash_title {
+		margin-top: 65px;
+	}
+	
+	@media (max-width: 900px) {
+		#splash_title {
+			font-size: 75px;
+			margin-top: 105px;
+		}
+	}
+
+	</style>
+
+	<!-- Unordered list style-->
+	<style>
+		ul {
+		  list-style: none;
+		  columns: 3;
+		  -webkit-columns: 3;
+		  -moz-columns: 3;
+		}
+	  </style>
+
+	<!-- Javascript for loading the graphs from Tableau-->
+	<script type="text/javascript">
+		/* var vizList = ["https://public.tableau.com/views/Quarterly_16046469809750/Stockturn?:language=en&:display_count=y&:origin=viz_share_link",
+		"https://public.tableau.com/views/Quarterly_16046469809750/GMROI?:language=en&:display_count=y&:origin=viz_share_link",
+		"https://public.tableau.com/views/Quarterly_16046469809750/Sellthrough?:language=en&:display_count=y&:origin=viz_share_link",
+			"https://public.tableau.com/views/Biannually/Stockturn?:language=en&:display_count=y&:origin=viz_share_link", 
+						"https://public.tableau.com/views/Biannually/GMROI?:language=en&:display_count=y&:origin=viz_share_link", 
+						"https://public.tableau.com/views/Biannually/Sellthrough?:language=en&:display_count=y&:origin=viz_share_link", 
+						"https://public.tableau.com/views/SalesStockCustomer/MonthvsCustomerFluctuation?:language=en&:display_count=y&:origin=viz_share_link",
+						"https://public.tableau.com/views/SalesStockCustomer/Monthsvsgrossprofit?:language=en&:display_count=y&:origin=viz_share_link",
+						"https://public.tableau.com/views/SalesStockCustomer/MonthvsSalespersquarefeet?:language=en&:display_count=y&:origin=viz_share_link",
+						"https://public.tableau.com/views/SalesStockCustomer/MonthvsSalesperemployee?:language=en&:display_count=y&:origin=viz_share_link",
+						"https://public.tableau.com/views/SalesStockCustomer/CustomerRetention?:language=en&:display_count=y&:origin=viz_share_link",
+						"https://public.tableau.com/views/SalesStockCustomer/MonthvsConversionRate?:language=en&:display_count=y&:origin=viz_share_link",
+						]; */
+		var vizList = ["https://public.tableau.com/views/SalesStockCustomer_new/Monthsvsgrossprofit?:language=en&:display_count=y&publish=yes&:origin=viz_share_link",
+		"https://public.tableau.com/views/SalesStockCustomer_new/MonthvsSalespersquarefeet?:language=en&:display_count=y&:origin=viz_share_link",
+		"https://public.tableau.com/views/SalesStockCustomer_new/MonthvsSalesperemployee?:language=en&:display_count=y&:origin=viz_share_link",
+		"https://public.tableau.com/views/SalesStockCustomer_new/MonthvsCustomerFluctuation?:language=en&:display_count=y&:origin=viz_share_link",
+
+	]
+		var viz,
+			vizLen = vizList.length,
+			vizCount = 0;
+			isDrawnOnce = false;
+	
+			function createViz(vizPlusMinus) {
+            var vizDiv = document.getElementById("vizContainer"), options = {hideTabs: true};
+
+            vizCount = vizCount + vizPlusMinus;
+            drawIt = true;
+            
+            // if vizCount exceeds the array size, remain at the end, and do not redraw.
+            if (vizCount >= vizLen) { 
+                vizCount = vizLen - 1;
+                drawIt = false;
+			}
+
+            // if vizCount underruns the array size, remain at the start, and do not redraw.
+            if (vizCount < 0) {
+                vizCount = 0;
+                drawIt = false;
+            }
+
+			//disable the previous button if already at the beginning
+            if (vizCount <= 0)
+                document.getElementById("prevbtn").disabled = true;
+			else
+				document.getElementById("prevbtn").disabled = false;
+
+			//disable the next button if already at the end
+            if (vizCount >= (vizLen-1))
+                document.getElementById("nextbtn").disabled = true;
+            else
+                document.getElementById("nextbtn").disabled = false;
+
+			if (!drawIt) return; // return if new viz does not need to be drawn
+            if (viz) viz.dispose(); // If a viz object exists, delete it.
+            viz = new tableau.Viz(vizDiv, vizList[vizCount], options); // get and draw the viz object at the given index
+        }
+		</script>
+		
+</head>
+
+<body onload="createViz(0);">
+	<!-- Splash Page! -->
+	<!-- Splash Page! -->
+	<div id="splash" style='background:hsl(199, 96%, 28%);'>
+		<iframe id="splash_iframe" src="/-splash/network/social.html" scrolling="no"></iframe>
+		<div id="splash_title"><b>KPI Graphs</b></div>
+		<div id="splash_arrow">
+			<div></div><div></div><div></div><div></div>
+		</div>
+		<a href='/' id='splash_home'></a>
+	</div>
+
+	<!-- Words & Gallery! -->
+	<div id="words">
+		<div id="intro">
+			<p>A Strategy Advisor formulated on the basis of the Prisoner’s Dilemma (Game Theory) via machine learning simulation applicable to the specifics of retail business.</p>
+		</div>
+		
+		<div class="row">
+			<div class="column left" ;>
+				<div id="vizContainer" style="width:700px; height:600px;margin-left:150px;margin-top: 60px;"></div>
+			</div>
+			 <div class="column right" ;>
+				<div class="card" style="width:580px; height:550px;margin-left: 130px;margin-top: 60px;">
+					<div class="slideshow-container" style="width: auto;height: auto;;margin-top: 80px; margin-right: auto;">
+						<div style="text-align:left;"> 
+							<span class="dot"  style="margin-top: 20px; margin-left: 20px"></span> 
+							<span class="dot"></span> 
+							<!-- <span class="dot" onclick="currentSlide(3)"></span> -->
+							<span class="dot"></span> 
+							<span class="dot"></span>
+							<!-- <span class="dot"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>
+							<span class="dot"></span>  -->
+						</div>
+						<hr style="height:2px;border-width:0;color:gray;background-color:#D3D3D3; margin-top: 25px;margin-left: 20px;margin-right: 20px">
+						<div class="mySlides">
+							<!--  <div class="numbertext" style="margin-top: 20px;margin-left: auto;" >1 / 4</div>
+							<hr style="height:2px;border-width:0;color:gray;background-color:#D3D3D3; margin-top: 25px;margin-left: 0px;margin-right: 0px"> 
+							<progress value = "10" max = "100" style="height: 2px;width: 400px;border-width:0;color:gray;background-color:#D3D3D3; margin-top: 20px;margin-left: 0px;margin-right: 20px;position:relative;"/>  -->
+							<!-- <h4 style="text-align: right;margin-top: -90px;font-weight: normal;">Quarterly</h4> -->
+							<h2 style="text-align: center;margin-top: 50px;font-size: 30px;">Month vs Gross Profit</h2>
+							
+							<p>Your gross profit tells you how much you made after deducting the costs of creating and selling the product.
+
+							</p>
+							<p> Calculate it using the formula:</p>
+							<p style="text-align: center;">sales revenues – the cost of goods sold </p>
+			
+						</div>
+						<div class="mySlides">
+							<!-- <h4 style="text-align: right;margin-top: -90px;font-weight: normal;">Quarterly</h4> -->
+							<h2 style="text-align: center;margin-top: 50px;font-size: 30px;">Month vs Sales per square feet</h2>  
+							<p>This metric pertains to the number of sales you generate per square footage of sales space in your store. (Note: this doesn’t include fitting rooms or stockrooms.
+
+								<p>The formula for Sales per square feet is:</p>
+								<p>net sales/amount of sales space </p>
+							</p>
+						</div>
+						<div class="mySlides"> 
+							<h2 style="text-align: center;margin-top: 50px;font-size: 30px;">Sales per Employee</h2>
+							<p>Sales per employee is a measure that comes in handy when you’re planning your staff’s schedules and initiatives. This metric can help you make smarter employment decisions, particularly when it comes to hiring, rostering, and compensation.
+								You can easily measure it using this equation:
+
+								net sales/number of employees 
+
+							</p>							
+						</div>
+						<div class="mySlides"> 
+							<h2 style="text-align: center;margin-top: 50px;font-size: 30px;">Customer Fluctuation</h2>
+							<p>Customer fluctuation measures the number of people who visited the business compared to the number of people who made a purchase. 
+		
+							</p>							
+						</div>
+						 <!-- <div class="mySlides"> -->
+							<!-- <h4 style="text-align: right;margin-top: -90px;font-weight: normal;">Quarterly</h4> -->
+							<!-- <h2 style="text-align: center;margin-top: 100px;font-size: 30px;">Sell Through</h2>
+							<p>Sell through is the percentage of units sold versus the number of units that were available to be sold.
+								 <p>It’s expressed in percentage form using the formula:</p>
+								<p>number of units sold / beginning inventory x 100</p>
+								
+							</p>  							
+						</div>
+						<div class="mySlides"> 
+							<h4 style="text-align: right;margin-top: -90px;font-weight: normal;">Biannually</h4>
+							<h2 style="text-align: center;margin-top: 100px;font-size: 30px;">Stock Turn</h2>
+							<p>Also known as inventory turnover, this metric pertains to the number of times stock is sold through or used in a given time period. 
+								<p>Calculate it using the formula:</p>
+								<p>cost of goods sold / average inventory</p>								
+							</p>							
+						</div>
+						<div class="mySlides"> 
+							<h4 style="text-align: right;margin-top: -90px;font-weight: normal;">Biannually</h4>
+							<h2 style="text-align: center;margin-top: 100px;font-size: 30px;">GMROI</h2> 
+							<p>Gross Margin Return on Investment (GMROI) measures your profit return on the funds invested in stock.
+								<p>The formula for GMROI is:</p>
+								<p>gross profit / average inventory</p>
+							</p>							
+						</div>
+						<div class="mySlides">
+							<h4 style="text-align: right;margin-top: -90px;font-weight: normal;">Biannually</h4>
+							<h2 style="text-align: center;margin-top: 100px;font-size: 30px;">Sell Through</h2>
+							<p>
+								Sell through is the percentage of units sold versus the number of units that were available to be sold. 
+								<p>It’s expressed in percentage form using the formula:</p>
+								<p>number of units sold / beginning inventory x 100</p>
+							</p>							
+						</div>
+						
+						<div class="mySlides"> 
+							<h4 style="text-align: right;margin-top: -90px;font-weight: normal;">Biannually</h4>
+							<h2 style="text-align: center;margin-top: 100px;font-size: 30px;">Gross Profit</h2>
+							<p>Gross Margin Return on Investment (GMROI) measures your profit return on the funds invested in stock.
+								The formula for GMROI is:
+								gross profit / average inventory
+							</p>
+						</div>
+						<div class="mySlides"> 
+							<h4 style="text-align: right;margin-top: -90px;font-weight: normal;">Biannually</h4>
+							<h2 style="text-align: center;margin-top: 100px;font-size: 30px;">Sales per sq. ft.</h2>
+							<p>Gross Margin Return on Investment (GMROI) measures your profit return on the funds invested in stock. It answers the question, “For every dollar invested in inventory, how many dollars did I get back?”
+								The formula for GMROI is:
+								gross profit / average inventory
+							</p>							
+						</div>
+						
+						<div class="mySlides"> 
+							<h4 style="text-align: right;margin-top: -90px;font-weight: normal;">Biannually</h4>
+							<h2 style="text-align: center;margin-top: 100px;font-size: 30px;">Customer Retention</h2>
+							<p>Figures out whether or not you’re keeping customers new and old.
+								<br>
+								A relatively simple formula to calculate is:
+								<br>
+								((CE-CN)/CS)) x 100
+							</p> 								
+								<ul style="font-size: 10px;">
+									<li>CE = number of customers at the end of period</li>
+									<li>CN = number of new customers acquired during period</li>
+									<li>CS = number of customers at start of period</li>
+								</ul>													
+						</div>
+						<div class="mySlides"> 
+							<h4 style="text-align: right;margin-top: -90px;font-weight: normal;">Biannually</h4>
+							<h2 style="text-align: center;margin-top: 100px;font-size: 30px;">Conversion Rate</h2>
+							<p>The conversion rate is the proportion of store visits to the number of shoppers who made a purchase.
+							</p>
+						</div>
+						 -->
+						<!--  <h4><b>John Doe</b></h4> 
+				        <p>Architect & Engineer</p>  -->
+					</div>
+					<div id="controls" style="padding:20px;"></div>
+					<button id = "prevbtn" class="prev" onclick="plusSlides(-1);javascript:createViz(-1);" style="margin-top: 700px;margin-left: 20px;border: none;">←Previous</button> 
+					   <button id = "nextbtn" class="next" onclick="plusSlides(1);javascript:createViz(1);" style="margin-top: 700px;border: none;" >Next→</button> 
+					   <!-- <hr style="text-align: center;height:2px;border-width:0;color:gray;background-color:#D3D3D3; margin-bottom: 30px;margin-left: 20px;margin-right: 20px;position:sticky;"> -->
+					</div>
+			 </div>
+			</div>
+		</div>
+	</div>
+	<!-- FOOTER: Navigate to other parts of the site -->
+	<div id="footer_nav_container">
+		<div id="footer_nav">
+			<p> To explore the business concepts in action we have created a playable simulation </p>
+			<div class="footer_buttons"> 
+				<a href="SalesStockHeadOn.html" class="tag rainbow">Head-On</a>
+				<a href="SalesStockTour.html" class="tag rainbow">Tournament</a>
+			 </div>
+			
+			<p> The above case study analysis was based on a local Cotton King store, who's data was graciously provided to us by the owner Mr.Sanjay Ghaisas. <br>
+                <p> The above real world simulations would not have been possible without his help</p> <br>
+                <p>Our whole team is grateful for his contribution to our project.</p> <br>
+                <p><i>Insert his details here and other references</i></p> 
+            </p>
+		</div>
+	</div>
+	<!-- Site credits -->
+	<div id="footer_credits_container">
+		<div id="footer_credits"> This project was made possible by
+			<br> Deeksha Gupta | Anuya Joshi | Rutuja Kolhe | Prachi Mate
+			<br> Mentored By : Dr. Dipti Patil </div>
+	</div>
+
+	
+		<!-- Slideshow Script-->
+		<script>
+		var slideIndex = 1;
+		showSlides(slideIndex);
+	
+		function plusSlides(n) {
+			showSlides(slideIndex += n);
+		}
+	
+		function currentSlide(n) {
+			showSlides(slideIndex = n);
+		}
+	
+		function showSlides(n) {
+			var i;
+			var slides = document.getElementsByClassName("mySlides");
+			var dots = document.getElementsByClassName("dot");
+			if(n > slides.length) {
+				slideIndex = 1
+			}
+			if(n < 1) {
+				slideIndex = slides.length
+			}
+			for(i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+			}
+			for(i = 0; i < dots.length; i++) {
+				dots[i].className = dots[i].className.replace(" active", "");
+			}
+			slides[slideIndex - 1].style.display = "block";
+			dots[slideIndex - 1].className += " active";
+		}
+		</script>
+</body>
+
+</html>
