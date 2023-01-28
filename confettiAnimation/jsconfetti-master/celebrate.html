@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="confettiAnimation\jsconfetti-master\jsconf.css"></link>
+    <title>Document</title>
+  </head>
+  <body>
+    
+    
+    
+</html>
+<script>
+  //   confetti.stop();
+
+  const startit = () => {
+    setTimeout(function () {
+      console.log("start");
+      confetti.start();
+    }, 1000);
+  };
+
+  const stopit = () => {
+    setTimeout(function () {
+      console.log("stop");
+      confetti.stop();
+    }, 6000);
+  };
+
+  startit();
+  stopit();
+</script>
+</body>
+<script src="./confetti.js"></script>
